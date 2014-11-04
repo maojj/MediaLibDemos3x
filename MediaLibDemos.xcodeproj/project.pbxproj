@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20AABF741A07199100BC6D03 /* ChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20AABF731A07199100BC6D03 /* ChooseViewController.m */; };
 		D316A765190A71C1007E2610 /* CommLibiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D316A741190A71C1007E2610 /* CommLibiOS.a */; };
 		D316A766190A71C1007E2610 /* CommLibiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D316A741190A71C1007E2610 /* CommLibiOS.a */; };
 		D316A767190A71C1007E2610 /* CommLibiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D316A741190A71C1007E2610 /* CommLibiOS.a */; };
@@ -112,6 +113,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20AABF721A07199100BC6D03 /* ChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseViewController.h; sourceTree = "<group>"; };
+		20AABF731A07199100BC6D03 /* ChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseViewController.m; sourceTree = "<group>"; };
 		D316A741190A71C1007E2610 /* CommLibiOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = CommLibiOS.a; sourceTree = "<group>"; };
 		D316A743190A71C1007E2610 /* Communication Library for iOS User Guide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Communication Library for iOS User Guide.pdf"; sourceTree = "<group>"; };
 		D316A744190A71C1007E2610 /* WeborbClient Class Reference.odt */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WeborbClient Class Reference.odt"; sourceTree = "<group>"; };
@@ -838,6 +841,8 @@
 				F9F703331652641D004FCA9B /* MainStoryboard_iPhone.storyboard */,
 				F9F703361652641D004FCA9B /* MainStoryboard_iPad.storyboard */,
 				F9F703221652641D004FCA9B /* Supporting Files */,
+				20AABF721A07199100BC6D03 /* ChooseViewController.h */,
+				20AABF731A07199100BC6D03 /* ChooseViewController.m */,
 			);
 			path = RTMPStreamComeback;
 			sourceTree = "<group>";
@@ -923,7 +928,7 @@
 						DevelopmentTeam = 73FSJC7BUF;
 					};
 					F9F6991F15AC5D01004B6F37 = {
-						DevelopmentTeam = 73FSJC7BUF;
+						DevelopmentTeam = 29QXUV376B;
 					};
 				};
 			};
@@ -1020,6 +1025,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9F703281652641D004FCA9B /* main.m in Sources */,
+				20AABF741A07199100BC6D03 /* ChooseViewController.m in Sources */,
 				F9F7032C1652641D004FCA9B /* AppDelegate.m in Sources */,
 				F9F7033B1652641D004FCA9B /* ViewController.m in Sources */,
 			);
@@ -1301,7 +1307,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				INFOPLIST_FILE = "RTMPStreamComeback/RTMPStreamComeback-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib/CommLibiOS",
@@ -1333,7 +1339,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				INFOPLIST_FILE = "RTMPStreamComeback/RTMPStreamComeback-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib/CommLibiOS",

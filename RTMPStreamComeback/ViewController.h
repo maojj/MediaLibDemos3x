@@ -10,6 +10,7 @@
 
 @interface ViewController : UIViewController {
     
+    __weak IBOutlet UIView *preview;
     IBOutlet UIImageView     *streamView;
     IBOutlet UIBarButtonItem *btnConnect;
     IBOutlet UIBarButtonItem *btnToggle;
@@ -17,8 +18,15 @@
     IBOutlet UILabel         *memoryLabel;
 }
 
+@property (nonatomic, assign) BOOL isAudio;
+
+@property (nonatomic, copy) NSString *host;
+@property (nonatomic, copy) NSString *upStreamKey;
+@property (nonatomic, copy) NSString *downStreamKey;
+
 -(IBAction)connectControl:(id)sender;
 -(IBAction)publishControl:(id)sender;
 -(IBAction)camerasToggle:(id)sender;
+
 
 @end

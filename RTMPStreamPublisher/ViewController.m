@@ -46,11 +46,18 @@
     socket = nil;
     upstream = nil;
 
+    NSString *url = @"rtmp://203.195.206.219:1935/oflaDemo";
+    NSString *key = @"stream3";
+
     hostTextField.text = @"rtmp://192.168.1.105:1935/live";
     hostTextField.delegate = self;
 
     streamTextField.text = @"teststream";
 	streamTextField.delegate = self;
+
+    hostTextField.text = url;
+    streamTextField.text = key;
+
 }
 
 -(void)viewDidUnload {

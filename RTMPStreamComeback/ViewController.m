@@ -22,9 +22,8 @@ static BOOL isCrossStreams = YES;   // Makes video chat (two separate streams) b
 static BOOL isCrossStreams = NO;    // Makes output & input streams on the one device
 #endif
 
-static NSString *host = @"rtmp://192.168.1.105:1935/live";
-static NSString *stream = @"teststream";
-
+//static NSString *host = @"rtmp://203.195.206.219:1935/oflaDemo";
+//static NSString *stream = @"stream";
 
 @interface ViewController () <MPIMediaStreamEvent> {
     
@@ -36,8 +35,8 @@ static NSString *stream = @"teststream";
     MPVideoResolution       resolution;
     AVCaptureVideoOrientation orientation;
     
-    int                     upstreamCross;
-    int                     downstreamCross;
+//    int                     upstreamCross;
+//    int                     downstreamCross;
 
     UIActivityIndicatorView *netActivity;
 }
@@ -68,8 +67,11 @@ static NSString *stream = @"teststream";
     BOOL isPad = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
     
     // if isCrossStreams - makes 'teststream1' & 'teststream2' cross streams, else - one 'teststream0' stream for output & input
-    upstreamCross = isCrossStreams? isPad? 2 :1 :0;
-    downstreamCross = isCrossStreams? isPad? 1 :2 :0;
+//    upstreamCross = isCrossStreams? isPad? 2 :1 :0;
+//    downstreamCross = isCrossStreams? isPad? 1 :2 :0;
+
+//    upstreamCross = 5;
+//    downstreamCross = 6;
 
 	// Create and add the activity indicator
 	netActivity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:isPad?UIActivityIndicatorViewStyleGray:UIActivityIndicatorViewStyleWhiteLarge];
@@ -112,11 +114,13 @@ static NSString *stream = @"teststream";
     resolution = RESOLUTION_MEDIUM;
     //resolution = RESOLUTION_VGA;
     
-    upstream = [[BroadcastStreamClient alloc] init:host resolution:resolution];
-    //upstream = [[BroadcastStreamClient alloc] initOnlyAudio:host];
+    if (self.isAudio) {
+        upstream = [[BroadcastStreamClient alloc] initOnlyAudio:self.host];
+    } else {
+        upstream = [[BroadcastStreamClient alloc] init:self.host resolution:resolution];
+    }
     //upstream = [[BroadcastStreamClient alloc] initOnlyVideo:host resolution:resolution];
-    
-    
+
     upstream.delegate = self;
     
     //upstream.videoCodecId = MP_VIDEO_CODEC_FLV1;
@@ -124,8 +128,8 @@ static NSString *stream = @"teststream";
     
     //upstream.audioCodecId = MP_AUDIO_CODEC_NELLYMOSER;
     upstream.audioCodecId = MP_AUDIO_CODEC_AAC;
-    //upstream.audioCodecId = MP_AUDIO_CODEC_SPEEX;
-    
+//    upstream.audioCodecId = MP_AUDIO_CODEC_SPEEX;
+
     //[upstream setVideoBitrate:72000];
     
     orientation = AVCaptureVideoOrientationPortrait;
@@ -134,8 +138,8 @@ static NSString *stream = @"teststream";
     //orientation = AVCaptureVideoOrientationLandscapeLeft;
     [upstream setVideoOrientation:orientation];
 
-    NSString *name = [NSString stringWithFormat:@"%@%d", stream, upstreamCross];
-    [upstream stream:name publishType:PUBLISH_LIVE];
+//    NSString *name = [NSString stringWithFormat:@"%@%d", stream, upstreamCross];
+    [upstream stream:self.upStreamKey publishType:PUBLISH_LIVE];
     
     btnConnect.title = @"Disconnect";
     
@@ -143,14 +147,14 @@ static NSString *stream = @"teststream";
 }
 
 -(void)doPlay {
-    
+    NSLog(@"play stream: %@", self.downStreamKey);
     decoder = [[MPMediaDecoder alloc] initWithView:streamView];
     decoder.delegate = self;
     decoder.isRealTime = YES;
     
     decoder.orientation = UIImageOrientationUp;
     
-    NSString *name = [NSString stringWithFormat:@"%@/%@", host, [NSString stringWithFormat:@"%@%d", stream, upstreamCross]];
+    NSString *name = [NSString stringWithFormat:@"%@/%@", self.host, self.downStreamKey];
     [decoder setupStream:name];
     
     btnPublish.title = @"Pause";
@@ -171,11 +175,13 @@ static NSString *stream = @"teststream";
     upstream = nil;
    
     btnConnect.title = @"Connect";
-    btnToggle.enabled = NO;
+
+    btnToggle.title = @"退出";
+    btnToggle.enabled = YES;
     
     btnPublish.title = @"Start";
     btnPublish.enabled = NO;
-    
+
     streamView.hidden = YES;
     
     [netActivity stopAnimating];
@@ -188,14 +194,14 @@ static NSString *stream = @"teststream";
 
 -(IBAction)connectControl:(id)sender {
     
-    NSLog(@"connectControl: host = %@", host);
+    NSLog(@"connectControl: host = %@", self.host);
     
     streamView.hidden? [self doConnect] : [self doDisconnect];
 }
 
 -(IBAction)publishControl:(id)sender {
     
-    NSLog(@"publishControl: stream = %@", stream);
+    NSLog(@"publishControl: stream = %@", self.upStreamKey);
     
     if (isCrossStreams)
         [self doPlay];
@@ -204,7 +210,8 @@ static NSString *stream = @"teststream";
 }
 
 -(IBAction)camerasToggle:(id)sender {
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    return;
     NSLog(@"camerasToggle:");
     
     if (upstream.state != STREAM_PLAYING)
@@ -246,13 +253,13 @@ static NSString *stream = @"teststream";
             case STREAM_PAUSED: {
                 
                 btnPublish.title = @"Start";
-                btnToggle.enabled = NO;
-                
+//                btnToggle.enabled = NO;
+
                 break;
             }
                 
             case STREAM_PLAYING: {
-               
+                [upstream setPreviewLayer:preview];
                 if (!isCrossStreams)
                     [self doPlay];
                 

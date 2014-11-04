@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch.iPad" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES" promptedForUpgradeToXcode5="NO" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <deployment identifier="iOS"/>
+        <development version="4600" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -13,6 +15,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B0h-BS-OpL">
+                                <rect key="frame" x="-5" y="960" width="773" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="773" id="82F-9M-PhA"/>
                                 </constraints>
@@ -39,11 +42,13 @@
                                 </items>
                             </toolbar>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t0k-C6-MxG">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="921"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="921" id="09h-8J-CVg"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIB-AB-5ie">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SIB-AB-5ie">
+                                <rect key="frame" x="488" y="929" width="152" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="XLe-SH-vzY"/>
                                     <constraint firstAttribute="width" constant="152" id="qHN-of-mcv"/>
@@ -76,29 +81,6 @@
             </objects>
         </scene>
     </scenes>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="camerasToggle:"/>
-                <relationship kind="action" name="connectControl:"/>
-                <relationship kind="action" name="playControl:"/>
-                <relationship kind="action" name="publishControl:"/>
-                <relationship kind="outlet" name="btnConnect" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="btnPlay" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="btnPublish" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="btnToggle" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="hostTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="memoryLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="previewView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="streamTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="streamView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
